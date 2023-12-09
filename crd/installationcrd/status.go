@@ -7,12 +7,12 @@ import (
 // Status is the status portion of an [Installation] resource.
 type Status struct {
 	Conditions status.ConditionSet `json:"conditions,omitempty"`
-	Tag        TagStatus           `json:"tag,omitempty"`
+	Tag        Tag                 `json:"tag,omitempty"`
 }
 
-// TagStatus describes the image tag that an [Installation]'s version constraint
+// Tag describes the image tag that an [Installation]'s version constraint
 // resolves to.
-type TagStatus struct {
+type Tag struct {
 	Name    string `json:"name,omitempty"`
 	Version string `json:"version,omitempty"`
 	Digest  string `json:"digest,omitempty"`

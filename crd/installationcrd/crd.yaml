@@ -28,29 +28,115 @@ spec:
                 - versionConstraint
               properties:
                 image:
+                  type: string
                   description: The name of the image containing the Cuerator Collection.
-                  type: string
                 versionConstraint:
-                  description: A semantic version constraint that determines which version of the image to use.
                   type: string
+                  description: A semantic version constraint that determines which version of the image to use.
                 inputs:
-                  description: A list of references to Kubernetes resources that are used as inputs to the Cuerator Collection.
                   type: array
                   items:
                     type: object
                     required:
-                      - name
-                      - kind
+                      - path
                     properties:
-                      kind:
-                        description: The kind of resource from which input values are read.
+                      path:
                         type: string
-                        enum:
-                          - Secret
-                          - ConfigMap
-                      name:
-                        description: The name of the input resource.
+                        description: The path within the Cuerator inputs struct at which the value is merged.
+                      value:
+                        description: The value, expressed as a YAML value (not a CUE expression).
+                        x-kubernetes-preserve-unknown-fields: true
+                      valueFrom:
+                        type: object
+                        description: Obtain the input value from another Kubernetes resource.
+                        properties:
+                          configMapKeyRef:
+                            type: object
+                            description: Obtain the input value from a specific key of a ConfigMap.
+                            required:
+                              - name
+                              - key
+                            properties:
+                              name:
+                                type: string
+                                description: The name of the ConfigMap.
+                              key:
+                                type: string
+                                description: The key within the ConfigMap.
+                              optional:
+                                type: boolean
+                                description: Indicates whether to ignore this reference if the ConfigMap or key does not exist; otherwise, an error occurs.
+                          secretKeyRef:
+                            type: object
+                            description: Obtain the input value from a specific key of a Secret.
+                            required:
+                              - name
+                              - key
+                            properties:
+                              name:
+                                type: string
+                                description: The name of the Secret.
+                              key:
+                                type: string
+                                description: The key within the Secret.
+                              optional:
+                                type: boolean
+                                description: Indicates whether to ignore this reference if the Secret or key does not exist; otherwise, an error occurs.
+                        value:
+                          description: The value of the input.
+                        valueFrom:
+                          description: Obtain the input value from another Kubernetes resource.
+                          type: object
+                          properties:
+                            configMapKeyRef:
+                              description: Obtain the input value from a specific key of a ConfigMap.
+                              type: object
+                              required:
+                                - name
+                                - key
+                              properties:
+                                name:
+                                  description: The name of the ConfigMap.
+                                  type: string
+                                key:
+                                  description: The key of the ConfigMap entry.
+                                  type: string
+                                optional:
+                                  description: If true, the input value is optional. If the ConfigMap or key does not exist, the input value is not set.
+                                  type: boolean
+                inputsFrom:
+                  description: A list of references to Kubernetes resources that are used as inputs to the Cuerator Collection.
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      path:
                         type: string
+                        description: The path at which the values are placed within the Cuerator inputs, defaults to the root of the inputs struct.
+                      configMapRef:
+                        type: object
+                        description: Obtain input values from a ConfigMap.
+                        required:
+                          - name
+                        properties:
+                          name:
+                            type: string
+                            description: The name of the ConfigMap.
+                          optional:
+                            type: boolean
+                            description: Indicates whether to ignore this reference if the ConfigMap does not exist; otherwise, an error occurs.
+                      secretRef:
+                        type: object
+                        description: Obtain input values from a Secret.
+                        required:
+                          - name
+                        properties:
+                          name:
+                            type: string
+                            description: The name of the Secret.
+                          optional:
+                            type: boolean
+                            description: Indicates whether to ignore this reference if the Secret does not exist; otherwise, an error occurs.
             status:
               type: object
               properties:

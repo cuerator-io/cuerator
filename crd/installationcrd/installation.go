@@ -7,6 +7,9 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 )
 
+// Version is the version of the API/CRDs.
+const Version = "v1alpha1"
+
 // Installation is the root of an "installation" resource.
 type Installation struct {
 	metav1.TypeMeta   `json:",inline"`

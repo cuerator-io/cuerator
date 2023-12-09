@@ -99,7 +99,7 @@ func (r *Reconciler) resolveVersion(
 
 	cond.Reason = "ConstraintSatisfied"
 
-	inst.Status.Tag = installationcrd.TagStatus{
+	inst.Status.Tag = installationcrd.Tag{
 		Name:    ver.TagName,
 		Version: ver.SemVer.String(),
 		Digest:  d.Digest.String(),
