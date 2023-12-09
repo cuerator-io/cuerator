@@ -1,0 +1,129 @@
+spec:
+  group: cuerator.io
+  names:
+    plural: installations
+    shortNames:
+      - install
+      - inst
+    kind: Installation
+    categories:
+      - cuerator
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          required:
+            - spec
+          properties:
+            spec:
+              type: object
+              required:
+                - image
+                - versionConstraint
+              properties:
+                image:
+                  description: The name of the image containing the Cuerator Collection.
+                  type: string
+                versionConstraint:
+                  description: A semantic version constraint that determines which version of the image to use.
+                  type: string
+                inputs:
+                  description: A list of references to Kubernetes resources that are used as inputs to the Cuerator Collection.
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - name
+                      - kind
+                    properties:
+                      kind:
+                        description: The kind of resource from which input values are read.
+                        type: string
+                        enum:
+                          - Secret
+                          - ConfigMap
+                      name:
+                        description: The name of the input resource.
+                        type: string
+            status:
+              type: object
+              properties:
+                conditions:
+                  x-kubernetes-list-type: map
+                  x-kubernetes-list-map-keys:
+                    - type
+                  description: List of conditions that indicate the status of object.
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - status
+                      - type
+                    properties:
+                      type:
+                        description: Type of the condition.
+                        type: string
+                      status:
+                        description: Status of the condition.
+                        type: string
+                        enum:
+                          - Unknown
+                          - "True"
+                          - "False"
+                      reason:
+                        description: A machine-readable explanation for the condition's last transition.
+                        type: string
+                      message:
+                        description: A human-readable description that complements the reason.
+                        type: string
+                      observedGeneration:
+                        description: The generation of the DNS-SD resource that was known to the controller when this condition was set.
+                        type: integer
+                        format: int64
+                      lastTransitionTime:
+                        description: The time at which this condition was last changed.
+                        type: string
+                        format: date-time
+                tag:
+                  description: The image tag that the version constraint resolves to.
+                  type: object
+                  required:
+                    - name
+                    - version
+                  properties:
+                    name:
+                      description: The tag name.
+                      type: string
+                    version:
+                      description: The normalized semantic version.
+                      type: string
+                    digest:
+                      description: The image digest for the tag.
+                      type: string
+      additionalPrinterColumns:
+        - name: Image
+          description: The name of the image containing the Cuerator Collection.
+          type: string
+          jsonPath: .spec.image
+        - name: Constraint
+          description: The semantic version constraint that determines which version of the image to use.
+          type: string
+          jsonPath: .spec.versionConstraint
+        - name: Tag
+          description: The name of the image tag the the version constraint resolves to.
+          type: string
+          jsonPath: .status.tag.name
+        - name: Age
+          description: The time at which the installation was created.
+          type: date
+          jsonPath: .metadata.creationTimestamp
+metadata:
+  name: installations.cuerator.io
+kind: CustomResourceDefinition
+apiVersion: apiextensions.k8s.io/v1
