@@ -1,0 +1,7 @@
+#cuerator: inputs: {
+    name: *"name-from-default" | _
+}
+
+apiVersion: "example.org/v1"
+kind: "Resource"
+metadata: name: #cuerator.inputs.name
