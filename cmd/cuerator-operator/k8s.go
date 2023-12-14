@@ -56,7 +56,7 @@ func init() {
 			b := &scheme.Builder{
 				GroupVersion: schema.GroupVersion{
 					Group:   crd.GroupName,
-					Version: crd.Version,
+					Version: installationcrd.Version,
 				},
 			}
 
