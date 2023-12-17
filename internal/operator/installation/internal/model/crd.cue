@@ -183,30 +183,30 @@ spec: {
 					status: {
 						type: "object"
 						properties: {
-							tag: {
-								description: "The image tag that the version constraint resolves to."
+							desiredVersion: {
+								description: "The resolved version of the image, based on the version constraint."
 								type:        "object"
 								required: [
+									"normalized",
 									"image",
-									"name",
+									"tag",
 									"digest",
-									"normalizedVersion",
 								]
 								properties: {
-									image: {
-										description: "The name of the image that was used to resolve the tag."
+									normalized: {
+										description: "The normalized semantic version."
 										type:        "string"
 									}
-									name: {
-										description: "The tag name."
+									image: {
+										description: "The image name that was used to resolve the version."
+										type:        "string"
+									}
+									tag: {
+										description: "The name of the image tag."
 										type:        "string"
 									}
 									digest: {
-										description: "The image digest for the tag."
-										type:        "string"
-									}
-									normalizedVersion: {
-										description: "The normalized semantic version."
+										description: "The digest of the tag."
 										type:        "string"
 									}
 								}
@@ -229,10 +229,10 @@ spec: {
 					jsonPath:    ".spec.versionConstraint"
 				},
 				{
-					name:        "Tag"
+					name:        "Desired Tag"
 					description: "The name of the image tag the the version constraint resolves to."
 					type:        "string"
-					jsonPath:    ".status.tag.name"
+					jsonPath:    ".status.desiredVersion.tag"
 				},
 				{
 					name:        "Age"

@@ -4,12 +4,10 @@ import (
 	"context"
 
 	"github.com/cuerator-io/cuerator/internal/di"
-	"github.com/cuerator-io/cuerator/internal/operator/installationcrd"
+	"github.com/cuerator-io/cuerator/internal/operator/installation"
 	"github.com/dogmatiq/imbue"
 	"github.com/spf13/cobra"
-	"sigs.k8s.io/controller-runtime/pkg/builder"
 	"sigs.k8s.io/controller-runtime/pkg/manager"
-	"sigs.k8s.io/controller-runtime/pkg/predicate"
 )
 
 func init() {
@@ -21,21 +19,14 @@ func init() {
 			ctx := cmd.Context()
 			cmd.SilenceUsage = true
 
-			return imbue.Invoke2(
+			return imbue.Invoke1(
 				ctx,
 				di.Container,
 				func(
 					ctx context.Context,
 					m manager.Manager,
-					r *installationcrd.Reconciler,
 				) error {
-					err := builder.
-						ControllerManagedBy(m).
-						For(&installationcrd.Installation{}).
-						WithEventFilter(predicate.GenerationChangedPredicate{}).
-						Complete(r)
-
-					if err != nil {
+					if err := installation.BuildController(m); err != nil {
 						return err
 					}
 

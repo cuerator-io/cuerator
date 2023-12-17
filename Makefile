@@ -19,13 +19,11 @@ run: $(GO_DEBUG_DIR)/cuerator
 .PHONY: run-operator
 run-operator: $(GO_DEBUG_DIR)/cuerator
 	kubectl apply $(foreach f,$(CRD_YAML_FILES),-f $f)
-	$< run $(args)
+	DEBUG=true $< run $(args)
 
 %/crd.yaml: %/crd.cue
 	cue fmt $<
 	cue def --out yaml --force --outfile $@ $<
-
-
 
 .makefiles/%:
 	@curl -sfL https://makefiles.dev/v1 | bash /dev/stdin "$@"
