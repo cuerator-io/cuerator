@@ -7,18 +7,13 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 )
 
-type (
-	systemLogger  imbue.Name[logr.Logger]
-	verboseLogger imbue.Name[logr.Logger]
-)
-
 var debug = ferrite.
-	Bool("DEBUG", "Enable debug logging.").
+	Bool("DEBUG", "enable verbose/debug logging").
 	WithDefault(false).
 	Required()
 
 func init() {
-	imbue.With0Named[systemLogger](
+	imbue.With0(
 		Container,
 		func(
 			ctx imbue.Context,
@@ -28,16 +23,6 @@ func init() {
 					debug.Value(),
 				),
 			), nil
-		},
-	)
-
-	imbue.With1Named[verboseLogger](
-		Container,
-		func(
-			ctx imbue.Context,
-			l imbue.ByName[systemLogger, logr.Logger],
-		) (logr.Logger, error) {
-			return l.Value().V(1), nil
 		},
 	)
 }

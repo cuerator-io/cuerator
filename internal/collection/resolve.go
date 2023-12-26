@@ -21,19 +21,6 @@ func Resolve(
 			inputs,
 		)
 
-	// for i, inst := range instances {
-	// 	if inst.PkgName == "cuerator" {
-	// 		v := cc.BuildInstance(inst)
-	// 		if v.Err() != nil {
-	// 			return nil, v.Err()
-	// 		}
-
-	// 		base = base.Unify(v)
-	// 		instances = slices.Delete(instances, i, i+1)
-	// 		break
-	// 	}
-	// }
-
 	outputs := map[string]map[string]any{}
 
 	for _, inst := range instances {

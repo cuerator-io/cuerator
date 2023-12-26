@@ -11,7 +11,7 @@ import (
 
 func init() {
 	cmd := &cobra.Command{
-		Use:   "copy-self",
+		Use:   "copy-self <target-path>",
 		Short: "Create a copy of the Cuerator executable",
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -42,6 +42,8 @@ func init() {
 			if _, err := io.Copy(w, r); err != nil {
 				return fmt.Errorf("unable to copy file contents: %w", err)
 			}
+
+			cmd.Printf("copied %s to %s\n", from, to)
 
 			return nil
 		},

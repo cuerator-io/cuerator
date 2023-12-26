@@ -1,4 +1,4 @@
-package installationcrd
+package model
 
 import (
 	"github.com/cuerator-io/cuerator/internal/operator/internal/crd"
@@ -7,8 +7,8 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 )
 
-// Version is the version of the API/CRDs.
-const Version = "v1alpha1"
+// APIVersion is the version of the CRD's API.
+const APIVersion = "v1alpha1"
 
 // Installation is the root of an "installation" resource.
 type Installation struct {

@@ -30,8 +30,8 @@ func (s *ConditionSet) Get(t string) metav1.Condition {
 	}
 }
 
-// Merge merges the given conditions into the set.
-func (s *ConditionSet) Merge(conditions ...metav1.Condition) {
+// Set sets the given conditions.
+func (s *ConditionSet) Set(conditions ...metav1.Condition) {
 	for _, c := range conditions {
 		index, ok := slices.BinarySearchFunc(
 			*s,

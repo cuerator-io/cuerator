@@ -1,4 +1,4 @@
-package installationcrd
+package model
 
 // Spec is the specification section of an [Installation].
 type Spec struct {
