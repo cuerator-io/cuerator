@@ -3,7 +3,7 @@ module github.com/cuerator-io/cuerator
 go 1.21.4
 
 require (
-	cuelang.org/go v0.7.0
+	cuelang.org/go v0.7.1
 	github.com/Masterminds/semver v1.5.0
 	github.com/dogmatiq/dapper v0.5.0
 	github.com/dogmatiq/dyad v0.2.2
