@@ -5,7 +5,7 @@ go 1.21.4
 require (
 	cuelang.org/go v0.7.1
 	github.com/Masterminds/semver v1.5.0
-	github.com/dogmatiq/dapper v0.5.0
+	github.com/dogmatiq/dapper v0.5.1
 	github.com/dogmatiq/dyad v1.0.0
 	github.com/dogmatiq/ferrite v1.2.1
 	github.com/dogmatiq/imbue v0.7.1
@@ -26,6 +26,7 @@ require (
 	github.com/cockroachdb/apd/v3 v3.2.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dogmatiq/iago v0.4.0 // indirect
+	github.com/dogmatiq/jumble v0.1.0 // indirect
 	github.com/emicklei/go-restful/v3 v3.11.0 // indirect
 	github.com/emicklei/proto v1.10.0 // indirect
 	github.com/evanphx/json-patch/v5 v5.8.0 // indirect
@@ -75,7 +76,7 @@ require (
 	golang.org/x/time v0.3.0 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.4.0 // indirect
 	google.golang.org/appengine v1.6.8 // indirect
-	google.golang.org/protobuf v1.31.0 // indirect
+	google.golang.org/protobuf v1.32.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
