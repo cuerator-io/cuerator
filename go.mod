@@ -6,7 +6,7 @@ require (
 	cuelang.org/go v0.7.1
 	github.com/Masterminds/semver v1.5.0
 	github.com/dogmatiq/dapper v0.5.0
-	github.com/dogmatiq/dyad v0.2.2
+	github.com/dogmatiq/dyad v1.0.0
 	github.com/dogmatiq/ferrite v1.2.1
 	github.com/dogmatiq/imbue v0.7.1
 	github.com/go-logr/logr v1.4.1
@@ -66,11 +66,11 @@ require (
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect
 	golang.org/x/exp v0.0.0-20231006140011-7918f672742d // indirect
-	golang.org/x/net v0.19.0 // indirect
+	golang.org/x/net v0.20.0 // indirect
 	golang.org/x/oauth2 v0.15.0 // indirect
 	golang.org/x/sync v0.6.0 // indirect
 	golang.org/x/sys v0.16.0 // indirect
-	golang.org/x/term v0.15.0 // indirect
+	golang.org/x/term v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	gomodules.xyz/jsonpatch/v2 v2.4.0 // indirect
